@@ -8,6 +8,6 @@ _Commands Example:_
 
 _Running code on Linux / OS X_
 ```
- mvn test  -Dcucumber.options="--tags @C12600 --plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm" -Dhost=http://carid.com -Dbrowser=chrome
+ mvn test  -Dcucumber.options="--tags @C12600 --plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm" -Dhost=URL -Dbrowser=chrome
 ```
 
