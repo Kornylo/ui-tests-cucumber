@@ -1,0 +1,10 @@
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/common/AllureReportConfig.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/driver/DriverWrapper.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/automation/CucumberTestRunner.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/runs/CucumberTestRunner.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/driver/SharedDriver.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/driver/DriverFactory.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/pages/GlobalPage.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/common/MainConfig.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/steps/GlobalSteps.java
+/home/kornulod/Templates/ui-tests/src/test/java/com/cuce/util/PropertiesUtils.java
