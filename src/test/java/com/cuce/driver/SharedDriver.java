@@ -72,15 +72,6 @@ public class SharedDriver extends EventFiringWebDriver {
         System.out.println(System.getenv("JOB_URL") + System.getenv("BUILD_NUMBER") + "/allure/");
         logger.info("\n----------------------------------------------------------------------------------");
         logger.info("Scenario: '" + scenario.getName() + "'");
-        int cookiesCount = 1;
-        long endTime = currentTimeMillis() + 10000;
-        while (currentTimeMillis() < endTime && !(cookiesCount == 0)) {
-            manage().deleteAllCookies();
-            Set<Cookie> cookies = manage().getCookies();
-            cookiesCount = cookies.size();
-            logger.info("Time left: " + (currentTimeMillis() < endTime));
-            logger.info("Cookies: " + !(cookiesCount == 0));
-        }
         get("about:blank");
 
         /*  MyScreenRecorder.startRecording(scenario.getName());*/
