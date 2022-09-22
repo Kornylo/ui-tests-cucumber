@@ -72,7 +72,7 @@ public class SharedDriver extends EventFiringWebDriver {
         System.out.println(System.getenv("JOB_URL") + System.getenv("BUILD_NUMBER") + "/allure/");
         logger.info("\n----------------------------------------------------------------------------------");
         logger.info("Scenario: '" + scenario.getName() + "'");
-        get("about:blank");
+        DRIVER.get("about:blank");
 
         /*  MyScreenRecorder.startRecording(scenario.getName());*/
     }
