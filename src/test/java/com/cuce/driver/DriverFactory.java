@@ -82,7 +82,7 @@ class DriverFactory {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://143.198.189.202:8080/wd/hub").toURL(),
+                    URI.create("http://143.198.189.202:4444/wd/hub").toURL(),
                     capabilities
             );
             setImplicitlyWait(driver, TIMEOUT_VALUE);
