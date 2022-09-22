@@ -1,6 +1,5 @@
 package com.cuce.driver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,13 +29,16 @@ class DriverFactory {
 
         switch (browser) {
             case "CHROME":
-                instance = initWebDriver();
+                instance = initWebDriver(new ChromeDriver());
                 break;
             case "CHROMER":
                 instance = initRemoteDriver("chrome");
                 break;
             case "OPERA":
                 instance = initRemoteDriverOpera();
+                break;
+            case "FIREFOX":
+                instance = initWebDriver(new FirefoxDriver());
                 break;
             case "FIREFOXR":
                 instance = initRemoteDriverFirefox("firefox");
@@ -54,18 +56,11 @@ class DriverFactory {
         return instance;
     }
 
-    private static WebDriver initWebDriver() {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        return driver;
-    }
-
-
-/*    private static WebDriver initWebDriver(WebDriver driver) {
+    private static WebDriver initWebDriver(WebDriver driver) {
         setImplicitlyWait(driver, TIMEOUT_VALUE);
         driver.manage().window().maximize();
         return driver;
-    }  */
+    }
 
     static void setImplicitlyWait(WebDriver driver, long value) {
         driver.manage().timeouts().implicitlyWait(value, TimeUnit.SECONDS);
@@ -87,7 +82,7 @@ class DriverFactory {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create(getSelenoidUrl()).toURL(),
+                    URI.create("http://143.198.189.202:4444/wd/hub/").toURL(),
                     capabilities
             );
             setImplicitlyWait(driver, TIMEOUT_VALUE);
