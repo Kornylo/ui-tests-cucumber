@@ -17,6 +17,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -145,19 +148,67 @@ public class GlobalSteps {
         wait.until(webDriver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete"));
     }
 
-    @Then("^Get random Product from list$")
-    public void getКandomProductFromList() {
-        String host = getTargetTestHost();
-/*        List<String> givenList = new ArrayList<>(Arrays.asList("/-/-3630383597.html", "/-/-940137494.html", "/-/-3630383415.html", "/-/-3630382811.html"));
-        Random rand = new Random();
-        String randomElement = givenList.get(rand.nextInt(givenList.size()));
-        globalPage.getUrl(host + randomElement);*/
+    @Then("^ICBC")
+    public void getКandomProductFromList() throws InterruptedException {
+        driver.get("https://onlinebusiness.icbc.com/webdeas-ui/login;type=driver");
+        driver.findElement(By.xpath("//input[@formcontrolname='drvrLastName']")).sendKeys("Levchuk");
+        driver.findElement(By.xpath("//input[@formcontrolname='licenceNumber']")).sendKeys("09657275");
+        driver.findElement(By.xpath("//input[@formcontrolname='keyword']")).sendKeys("Shushunova");
+        driver.findElement(By.xpath("//label[@class='mat-checkbox-layout']//span")).click();
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        System.out.println("Page title is: " + driver.getTitle());
+        Thread.sleep(5000);
 
-            globalPage.getUrl(host + "/-/-3630383597.html");
+        WebElement textField = driver.findElement(By.xpath("//input[@data-placeholder='Start typing...']"));
 
+        // The text you want to type
+        String text = "port ";
+        // Enter text one letter at a time
+        for (char ch : text.toCharArray()) {
+            textField.sendKeys(Character.toString(ch));
+            // Optional: Add a delay between keystrokes to simulate natural typing
+            try {
+                Thread.sleep(100); // 100 milliseconds delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//span[text()[normalize-space()='Port Coquitlam, BC']]")).click();
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("//span[text()[normalize-space()='Search']]")).click();
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("//div[text()[normalize-space()='Port Coquitlam BC V3C 0A4']]")).click();
+        Thread.sleep(5000);
+        List<WebElement> element = driver.findElements(By.xpath("//span[text()='No appointments available']/following-sibling::span"));
+        if (element.size() > 0 && element.get(0).isDisplayed()) {
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", "no slot");
+        } else {
+            String slot = driver.findElement(By.xpath("//div[@class='dialog container']")).getText();
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", slot);
+        }
+    }
+
+    public static void sendToTelegramPhotos(String apiToken, String chatId, String text) {
+        String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s";
+        urlString = String.format(urlString, apiToken, chatId, text);
+        try {
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+            InputStream is = new BufferedInputStream(conn.getInputStream());
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String inputLine = "";
+            StringBuilder sb = new StringBuilder();
+            while ((inputLine = br.readLine()) != null) {
+                sb.append(inputLine);
+            }
+            String response = sb.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     }
 
 
 
-}

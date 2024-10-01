@@ -70,7 +70,6 @@ class DriverFactory {
     private static RemoteWebDriver initRemoteDriver(String browser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
-        capabilities.setVersion(getBrowserVersion());
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", false);
         capabilities.setCapability("browser_version", "latest");
@@ -82,7 +81,7 @@ class DriverFactory {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://143.198.189.202:4444/wd/hub").toURL(),
+                    URI.create("http://localhost:4444/wd/hub").toURL(),
                     capabilities
             );
             setImplicitlyWait(driver, TIMEOUT_VALUE);

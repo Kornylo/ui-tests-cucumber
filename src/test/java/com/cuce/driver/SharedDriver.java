@@ -4,6 +4,7 @@ import com.cuce.runs.CucumberTestRunner;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+
 import lombok.Getter;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -113,38 +114,6 @@ public class SharedDriver extends EventFiringWebDriver {
         String scenarioStatus = scenario.getStatus();
         logger.info("Scenario: '" + scenario.getName() + "' is: " + scenario.getStatus());
         logger.info("\n----------------------------------------------------------------------------------");
-        if (scenario.isFailed()) {
-            makeScreenshot(scenario);
-            if (scenario.getSourceTagNames().contains("@smokeProd")) {
-                makeScreenshotForTelegrambot();
-                uploadErrorImagesToTransfer();
-                DRIVER.get(imegesCURLTransfer);
-                Thread.sleep(3000);
-                DRIVER.findElement(By.xpath("//a[@class='btn-cta btn']")).click();
-                Thread.sleep(3000);
-                DRIVER.get("https://prnt.sc/");
-                Thread.sleep(3000);
-                WebDriverWait wait = new WebDriverWait(DRIVER, 30);
-                List<WebElement> AGREE = DRIVER.findElements(By.xpath("//button[contains(text(),'AGREE')]"));
-                if (AGREE.size() > 0 && AGREE.get(0).isDisplayed()) {
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'AGREE')]"))).click();
-                    Thread.sleep(3000);
-                }
-                DRIVER.findElement(By.xpath("//input[@type='file']")).sendKeys("/home/selenium/Downloads/javanullpointer.png");
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='uploader__link_textbox']")));
-                imagesUrl = DRIVER.findElement(By.xpath("//a[@class='uploader__link_textbox']")).getText();
-                //test bot
-                //  sendToTelegramPhotos("5143101069:AAHj_wWq-_hTulk29SnIPNC-vdsdboCCRIw","449324889",imagesUrl,scenarioName+" "+scenarioStatus +" Allure Report:" + System.getenv(  "JOB_URL") + System.getenv(  "BUILD_NUMBER") + "/allure/");
-                //smoke_bot
-                //my
-                sendToTelegramPhotos("2036394601:AAHk-lO7XfASl0X3I9c5o7xgnxUbtCw4MfA", "449324889", imagesUrl, scenarioName + " " + scenarioStatus + " Allure Report:" + System.getenv("JOB_URL") + System.getenv("BUILD_NUMBER") + "/allure/");
-                //dima
-                sendToTelegramPhotos("2036394601:AAHk-lO7XfASl0X3I9c5o7xgnxUbtCw4MfA", "858968839", imagesUrl, scenarioName + " " + scenarioStatus + " Allure Report:" + System.getenv("JOB_URL") + System.getenv("BUILD_NUMBER") + "/allure/");
-                //maks
-                sendToTelegramPhotos("2036394601:AAHk-lO7XfASl0X3I9c5o7xgnxUbtCw4MfA", "410677478", imagesUrl, scenarioName + " " + scenarioStatus + " Allure Report:" + System.getenv("JOB_URL") + System.getenv("BUILD_NUMBER") + "/allure/");
-
-            }
-        }
         closeExtraTabs();
     }
 
