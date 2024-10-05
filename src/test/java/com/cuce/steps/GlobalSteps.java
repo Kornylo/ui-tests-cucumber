@@ -194,8 +194,8 @@ public class GlobalSteps {
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", slot);
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", timeSlot);
             //ksus
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1", slot);
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1", timeSlot);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", slot);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", timeSlot);
 
            /* {"ok":true,"result":[{"update_id":43242962,
                     "message":{"message_id":19,"from":{"id":589206396,"is_bot":false,"first_name":"Ksenia","username":"ksenia_levchuk","language_code":"uk"},"chat":{"id":589206396,"first_name":"Ksenia","username":"ksenia_levchuk","type":"private"},"date":1728161339,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}},{"update_id":43242963,
