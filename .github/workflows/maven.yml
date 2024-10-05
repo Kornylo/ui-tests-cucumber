@@ -3,7 +3,7 @@ name: Scheduled Action Every 20 Minutes
 on:
   schedule:
     # Runs every 20 minutes
-    - cron: '*/20 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   run-scheduled-task:
