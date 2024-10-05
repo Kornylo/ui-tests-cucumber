@@ -185,7 +185,7 @@ public class GlobalSteps {
             //my
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", "no slot");
             //ksu
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1728161339", "no slot");
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", "no slot");
 
         } else {
             //my
