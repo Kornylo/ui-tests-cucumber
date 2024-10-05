@@ -182,10 +182,23 @@ public class GlobalSteps {
         Thread.sleep(5000);
         List<WebElement> element = driver.findElements(By.xpath("//span[text()='No appointments available']/following-sibling::span"));
         if (element.size() > 0 && element.get(0).isDisplayed()) {
+            //my
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", "no slot");
+            //ksu
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1728161339", "no slot");
+
         } else {
+            //my
             String slot = driver.findElement(By.xpath("//div[@class='dialog container']")).getText();
+            String timeSlot =driver.findElement(By.xpath("//button[@class='mat-button-toggle-button mat-focus-indicator']")).getText()
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", slot);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", timeSlot);
+            //ksu
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1728161339", slot);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "1728161339", timeSlot);
+
+
+
         }
     }
 
