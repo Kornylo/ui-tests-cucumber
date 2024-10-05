@@ -190,7 +190,7 @@ public class GlobalSteps {
         } else {
             //my
             String slot = driver.findElement(By.xpath("//div[@class='dialog container']")).getText();
-            String timeSlot =driver.findElement(By.xpath("//button[@class='mat-button-toggle-button mat-focus-indicator']")).getText()
+            String timeSlot =driver.findElement(By.xpath("//button[@class='mat-button-toggle-button mat-focus-indicator']")).getText();
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", slot);
             sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", timeSlot);
             //ksu
