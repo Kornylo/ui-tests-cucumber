@@ -72,7 +72,7 @@ class DriverFactory {
         capabilities.setBrowserName(browser);
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", false);
-        capabilities.setCapability("browser_version", "latest");
+        capabilities.setCapability("browser_version", "127.0");
         capabilities.setJavascriptEnabled(true);
         capabilities.setCapability("name", System.getProperty("customName"));
         ChromeOptions options = new ChromeOptions();
@@ -81,7 +81,7 @@ class DriverFactory {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://localhost:4444/wd/hub").toURL(),
+                    URI.create("http://147.182.188.254:4444/wd/hub").toURL(),
                     capabilities
             );
             setImplicitlyWait(driver, TIMEOUT_VALUE);
