@@ -20,6 +20,8 @@ import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -149,7 +151,7 @@ public class GlobalSteps {
     }
 
     @Then("^ICBC")
-    public void getКandomProductFromList() throws InterruptedException {
+    public void getКandomProductFromList() throws InterruptedException, UnsupportedEncodingException {
         driver.get("https://onlinebusiness.icbc.com/webdeas-ui/login;type=driver");
         driver.findElement(By.xpath("//input[@formcontrolname='drvrLastName']")).sendKeys("Levchuk");
         driver.findElement(By.xpath("//input[@formcontrolname='licenceNumber']")).sendKeys("09657275");
@@ -190,13 +192,11 @@ public class GlobalSteps {
 
         } else {
             //my
-            String slot = driver.findElement(By.xpath("//div[@class='dialog container']")).getText();
-            String timeSlot =driver.findElement(By.xpath("//button[@class='mat-button-toggle-button mat-focus-indicator']")).getText();
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", slot);
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", timeSlot);
-            //ksus
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", slot);
-            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", timeSlot);
+            String slot = driver.findElement(By.xpath("//div[@class='dialog container']")).getText().replaceAll("[ #%<>\\\\^{}\\[\\]|~]", "");;
+            String encodedMessage = URLEncoder.encode(slot, StandardCharsets.UTF_8.toString());
+            System.out.println(slot);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "449324889", encodedMessage);
+            sendToTelegramPhotos("7660493471:AAGUsSIUVjjYD3KS0-Z65EkAS2HvgXz1gPg", "589206396", encodedMessage);
 
            /* {"ok":true,"result":[{"update_id":43242962,
                     "message":{"message_id":19,"from":{"id":589206396,"is_bot":false,"first_name":"Ksenia","username":"ksenia_levchuk","language_code":"uk"},"chat":{"id":589206396,"first_name":"Ksenia","username":"ksenia_levchuk","type":"private"},"date":1728161339,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}},{"update_id":43242963,
